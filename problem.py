@@ -86,8 +86,12 @@ def _read_data(path, dataset, datatype=["rois", "vbm"]):
     if datatype == ["rois", "vbm"]:  # TODO: Remove this check
         assert np.all(x_arr[:, :284] == x_rois_arr)
         assert np.all(x_arr[:, 284:] == x_img_arr)
+        
+        
+    participants = pd.read_csv(os.path.join(path, "data", "%s_participants.csv" % dataset))
+    site_arr = participants["site"].values
 
-    return x_arr, y_arr
+    return x_arr, y_arr, site_arr
 
 
 def get_train_data(path=".", datatype=["rois", "vbm"]):
@@ -100,5 +104,3 @@ def get_test_data(path=".", datatype=["rois", "vbm"]):
     return _read_data(path, dataset, datatype)
 
 
-# x_arr, y_arr = get_train_data()
-# x_arr, y_arr = get_test_data()

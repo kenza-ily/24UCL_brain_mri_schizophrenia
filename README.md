@@ -1,4 +1,4 @@
-# Predict schizophrenia using brain anatomy
+# Predict schizophrenia from brain grey matter (classification)
 
 
 This challenge was proposed by Université Paris-Saclay. This repository encompasses my proposals.
