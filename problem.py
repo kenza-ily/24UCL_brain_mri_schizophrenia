@@ -3,11 +3,9 @@ import pandas as pd
 import numpy as np
 import rampwf as rw
 import os.path
-
 from sklearn.model_selection import StratifiedKFold, StratifiedGroupKFold
-from sklearn.model_selection import GroupKFold
 
-
+# -------- Cross-validation splitting --------
 N_FOLDS = 5
 problem_title = "Predict schizophrenia from \
     brain grey matter (classification)"
@@ -28,14 +26,14 @@ score_types = [
     rw.score_types.BalancedAccuracy(name="bacc", adjusted=False),
 ]
 
-
+# -------- Cross-validation splitting --------
 def get_cv(X, y, groups=None):
     if groups is not None:
         return StratifiedGroupKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
     else:
         return StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
 
-
+# -------- Data reading --------
 def _read_data(path, dataset, datatype=["rois", "vbm"]):
     """Read data.
 
@@ -86,12 +84,8 @@ def _read_data(path, dataset, datatype=["rois", "vbm"]):
     if datatype == ["rois", "vbm"]:  # TODO: Remove this check
         assert np.all(x_arr[:, :284] == x_rois_arr)
         assert np.all(x_arr[:, 284:] == x_img_arr)
-        
-        
-    participants = pd.read_csv(os.path.join(path, "data", "%s_participants.csv" % dataset))
-    site_arr = participants["site"].values
 
-    return x_arr, y_arr, site_arr
+    return x_arr, y_arr
 
 
 def get_train_data(path=".", datatype=["rois", "vbm"]):
@@ -104,3 +98,5 @@ def get_test_data(path=".", datatype=["rois", "vbm"]):
     return _read_data(path, dataset, datatype)
 
 
+# x_arr, y_arr = get_train_data()
+# x_arr, y_arr = get_test_data()
