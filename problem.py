@@ -27,11 +27,16 @@ score_types = [
 ]
 
 # -------- Cross-validation splitting --------
-def get_cv(X, y, groups=None):
-    if groups is not None:
-        return StratifiedGroupKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
-    else:
-        return StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
+
+def get_cv(X, y):
+    cv_train = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
+    return cv_train.split(X, y)
+
+# def get_cv(X, y, groups=None):
+#     if groups is not None:
+#         return StratifiedGroupKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
+#     else:
+#         return StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=0)
 
 # -------- Data reading --------
 def _read_data(path, dataset, datatype=["rois", "vbm"]):

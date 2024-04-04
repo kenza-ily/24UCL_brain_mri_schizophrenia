@@ -1,7 +1,11 @@
 # Predict schizophrenia from brain grey matter (classification)
 
 
-This challenge was proposed by Université Paris-Saclay. This repository encompasses my proposals.
+This challenge was proposed by Université Paris-Saclay. This repository encompasses my proposals to the RAMP challenge
+
+% This project is held in the context of the  \href{https://ramp.studio/events/brain_anatomy_schizophrenia_UCL_2024}{RAMP challenge}, for which the best pipeline has been submitted with the username \texttt{kenza-ily}.
+% The challenge first offers to classify patients on ROI data, from an MLPClassifier, with \texttt{bACC=0.63} and \texttt{ROC-AUC=0.74}, and on VBM data from a RandomForest classifier, with \texttt{bACC=0.63} and \texttt{ROC-AUC=0.70}. 
+% To improve upon the proposed baseline, we present the following approaches.
 
 Predict schizophrenia from brain grey matter (GM). schizophrenia is associated with diffuse and complex pattern of brain atrophy. We will try to learn a predictor of the clinical status (patient with schizophrenia vs. healthy control) using GM measurements on the brain participants.
 
